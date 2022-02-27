@@ -1,0 +1,12 @@
+<div>
+  <form (ngSubmit)="submit()" [formGroup]="formGroup">
+    <div *ngFor="let input of inputs" class="form-row">
+      <input-render (onChange)="setFormGroupValue($event)" [input]="input"
+        [form]="formGroup" [defaultValues]="defaultValues"></input-render>
+    </div>
+    <!--
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button class="btn">Suivant</button>
+    </div> -->
+  </form>
+</div>

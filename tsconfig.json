@@ -7,6 +7,12 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
+    "paths": {
+      "form-render": [
+        "dist/form-render/form-render",
+        "dist/form-render"
+      ]
+    },
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

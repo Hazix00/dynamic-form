@@ -1,0 +1,37 @@
+@import '../input-render/input-render.component.scss';
+
+
+.file-edit {
+
+  box-shadow: 0px 0px 11px #9E9E9E61;
+  border: 1px solid #79D4DC;
+  border-radius: 20px;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  span {
+    font: normal normal medium 10px Montserrat;
+    letter-spacing: -0.07px;
+    color: #1B478E;
+  }
+  button {
+    color: #fff;
+    padding: 3px 10px 10px 10px;
+    display: inline-block;
+    margin-left: 9px;
+    border-radius: 10px;
+    .mat-icon {
+      font-size: 1.3125rem;
+      position: relative;
+      top: 5px;
+    }
+  }
+  .button-danger {
+    background-color: #E55959;
+  }
+  .button-primary {
+    background-color: #28D7E5;
+  }
+}

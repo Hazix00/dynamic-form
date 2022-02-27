@@ -1,0 +1,46 @@
+<ng-container [formGroup]="form">
+  <div class="input-file-container" [ngClass]="input.classes">
+    <h5 *ngIf="!input.hideLabel">{{ input.label }}</h5>
+
+    <mat-form-field *ngIf="!form.controls[input.name].value || form.controls[input.name].value === ''; else editFile" >
+      <!-- <mat-label>{{ input.placeholder }}</mat-label> -->
+      <div class="input-file">
+        <!-- <input type="text" matInput readonly
+
+                    appFilenameOnly> -->
+        <ngx-mat-file-input
+          #fileInput
+          [formControlName]="input.name"
+          [valuePlaceholder]="input.placeholder!"
+          (change)="onFileChange($event)"
+        ></ngx-mat-file-input>
+        <button class="btn-file-upload" type="button" (click)="(fileInput.open)">
+          Sélectionner votre fichier
+        </button>
+        <!-- <input hidden #fileInput type="file"
+                    (change)="form.controls[input.name].setValue(fileInput.value); log(fileInput)"> -->
+      </div>
+      <mat-error *ngIf="form.controls[input.name].hasError('required')">
+        {{ input.label }} is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <ng-template #editFile>
+      <div class="file-edit">
+        <div class="">
+          <span>{{ form.controls[input.name].value._fileNames }}</span>
+        </div>
+        <div class="edit-buttons">
+          <button
+            class="button-danger"
+            (click)="form.controls[input.name].setValue('')"
+          >
+            <mat-icon>delete</mat-icon> Supprimer
+          </button>
+          <button class="button-primary">
+            <mat-icon>visibility</mat-icon> Visualiser
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</ng-container>

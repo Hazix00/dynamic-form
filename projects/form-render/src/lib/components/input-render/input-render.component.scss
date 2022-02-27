@@ -1,0 +1,204 @@
+table {
+  width: 100%;
+}
+
+.input {
+  margin-bottom: 5px;
+  color: #505050;
+
+  .mat-form-field {
+    width: 100%;
+
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+    .mat-form-field-outline {
+    border-radius: 20px;
+    border: 1px solid #349fa7;
+    opacity: 1;
+    overflow: hidden;
+
+    .mat-form-field-outline-start,
+    .mat-form-field-outline-gap,
+    .mat-form-field-outline-end {
+      border: none;
+    }
+  }
+  ::ng-deep
+    .mat-form-field-appearance-outline:not(.mat-form-field-disabled).mat-form-field-invalid
+    .mat-form-field-outline {
+    border-color: #f44336;
+  }
+
+  ::ng-deep
+    .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+    .mat-form-field-label,
+  .mat-form-field-appearance-outline.mat-form-field-can-float
+    .mat-input-server:focus
+    + .mat-form-field-label-wrapper
+    .mat-form-field-label {
+    background: white;
+    width: auto;
+    padding: 0 5px;
+    font-size: 15px;
+    color: black;
+  }
+
+
+  ::ng-deep .mat-form-field {
+    &-wrapper {
+      padding: 0;
+      padding-bottom: 1.34375em !important;
+      top: 0px;
+    }
+  }
+
+  &__background-blue {
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background: #e6f1ff 0% 0% no-repeat padding-box;
+    }
+  }
+  &__box-shadow {
+    ::ng-deep
+      .mat-form-field-appearance-outline:not(.mat-form-field-disabled)
+      .mat-form-field-outline {
+      box-shadow: 0px 0px 11px #9e9e9e61;
+      border: 1px solid #79d4dc;
+    }
+  }
+}
+
+::ng-deep .action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+::ng-deep .expanded-panel {
+  box-shadow: 0px 0px 11px #9E9E9E61 !important;
+  border: 1px solid #79D4DC !important;
+  border-radius: 20px !important;
+  .mat-expansion-panel-header {
+    border-bottom: 1px solid #79D4DC;
+    border-radius: 0;
+    background-color: #E5FDFF;
+    margin-bottom: 20px;
+  }
+  .mat-expansion-panel:not(.mat-expanded) {
+    .mat-expansion-panel-header {
+      border-bottom: none;
+    }
+  }
+  .mat-expansion-panel-header-title {
+    font: normal normal 500 1rem Montserrat;
+    color: #1B478E;
+  }
+}
+
+::ng-deep .document-file-input {
+  h5 {
+    font: normal normal 500 13px Montserrat;
+    letter-spacing: -0.09px;
+    color: #1B478E;
+  }
+}
+
+.input-file-container {
+
+  margin-bottom: 15px;
+  .input-file {
+    border: 1px solid #79D4DC;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+
+    input, ngx-mat-file-input {
+      flex-basis: 50%;
+      padding-left: 8px;
+    }
+    ngx-mat-file-input {
+      display: flex;
+      align-items: center;
+    }
+    .btn-file-upload {
+      flex-basis: 50%;
+      background-color: #00C2D1;
+      color: #fff;
+      padding: 12px 0;
+    }
+
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+
+    top: 48%;
+    left: 10px;
+  }
+
+}
+::ng-deep .categories__services {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  .mat-checkbox {
+    background: #e8e8e8;
+    padding: 5px 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+}
+.categories__sub-categories {
+
+}
+
+
+.btn {
+    border-radius: 29px;
+    padding: 12px 20px;
+    cursor: pointer;
+    background: transparent linear-gradient(269deg, #1b478e 0%, #0E2447 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    color: white;
+    font: normal normal 600 .625rem Montserrat;
+    text-align: center;
+    letter-spacing: 2.18px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+
+    &-invert {
+      background: #fff;
+      color: #0E2447;
+    }
+
+    &--control-add {
+      border-radius: 15px;
+      border: 2px solid #00c2d1;
+      padding: 0;
+      width: 37px;
+      height: 39px;
+      mat-icon {
+        font-size: 20px;
+      }
+    }
+
+    &--pause {
+      background: transparent linear-gradient(180deg, #80BF00 0%, #C3CE2F 100%) 0% 0% no-repeat padding-box;
+    }
+
+    &--file {
+      background: #00C2D1 0% 0% no-repeat padding-box;
+      color: #fff;
+      // border: 1px solid #79D4DC;
+      border-radius: 0px 15px 15px 0px;
+    }
+  }
+
+
+  .radio-btn {
+    height: 10px;
+    padding: 0;
+    margin: 3px 2px;
+  }
+

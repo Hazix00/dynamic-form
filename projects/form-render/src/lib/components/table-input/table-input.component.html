@@ -1,0 +1,121 @@
+<div class="control-section">
+  <ejs-grid
+    [dataSource]="values"
+    [allowPaging]="allowPaging"
+    [pageSettings]="pageSettings"
+    [editSettings]="editSettings"
+    (actionBegin)="actionBegin($event)"
+    (actionComplete)="actionComplete($event)"
+  >
+    <e-columns>
+      <e-column
+        *ngFor="let col of input.columns"
+        [field]="col.field"
+        [headerText]="col.headerText"
+        [width]="col.width"
+        [textAlign]="col.textAlign"
+        [isPrimaryKey]="col.isPrimaryKey"
+      ></e-column>
+    </e-columns>
+    <ng-template #editSettingsTemplate let-data>
+      <div ngForm #theForm="ngForm">
+        <table class="e-table e-inline-edit" cellspacing="0.25">
+          <colgroup>
+            <col *ngFor="let col of input.columns" style="width: 120px" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td
+                *ngFor="let col of input.columns; let first = first"
+                [ngStyle]="first ? { 'text-align': 'right' } : {}"
+                class="e-rowcell"
+              >
+                <ng-container [ngSwitch]="col.inputType">
+                  <div
+                    *ngSwitchCase="'text'"
+                    class="e-input-group"
+                    [ngClass]="{ 'e-disabled': !data.isAdd }"
+                  >
+                    <input
+                      class="e-input e-field"
+                      [(ngModel)]="orderData.OrderID"
+                      [attr.disabled]="!data.isAdd ? '' : null"
+                      name="OrderID"
+                      type="text"
+                      (focus)="focusIn($event.target)"
+                      (blur)="focusOut($event.target)"
+                      #OrderID
+                      style="text-align: right"
+                    />
+                  </div>
+                  <ejs-numerictextbox
+                    *ngSwitchCase="'number'"
+                    name="Freight"
+                    id="Freight"
+                    [(ngModel)]="orderData.Freight"
+                    floatLabelType="Never"
+                  ></ejs-numerictextbox>
+                  <ejs-datepicker
+                    *ngSwitchCase="'date'"
+                    id="OrderDate"
+                    name="OrderDate"
+                    required
+                    [(ngModel)]="orderData.OrderDate"
+                    floatLabelType="Never"
+                  ></ejs-datepicker>
+                  <ejs-dropdownlist
+                    *ngSwitchCase="'select'"
+                    id="ShipCountry"
+                    name="ShipCountry"
+                    [(ngModel)]="orderData.ShipCountry"
+                    [dataSource]="col.dataSource"
+                    [fields]="{ text: 'ShipCountry', value: 'ShipCountry' }"
+                    popupHeight="300px"
+                    floatLabelType="Never"
+                  ></ejs-dropdownlist>
+                  <ng-container *ngSwitchCase="'file'">
+                    <ng-container *ngIf="orderData.Document">
+                      <span class="fileListwrapper">
+                        <span
+                          class="icon template-icons sf-icon-{{
+                            orderData.Document.type
+                          }}"
+                        ></span>
+                        <span class="name file-name">{{
+                          orderData.Document.name
+                        }}</span>
+                        <button
+                          type="button"
+                          (click)="orderData.Document = undefined"
+                        >
+                          Supprimer
+                        </button>
+                        <button type="button">Visualiser</button>
+                      </span>
+                      <span
+                        class="e-icons e-file-remove-btn"
+                        title="Remove"
+                      ></span>
+                    </ng-container>
+                    <ng-container *ngIf="!orderData.Document">
+                      <ejs-uploader
+                        #defaultupload
+                        autoUpload="true"
+                        allowedExtensions="image/*"
+                        (selected)="orderData.Document = $event.filesData[0]"
+                        (failure)="onuploadFailed($event)"
+                        (progress)="onFileUpload($event)"
+                        (success)="onuploadSuccess($event)"
+                      >
+                      </ejs-uploader>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+  </ejs-grid>
+</div>

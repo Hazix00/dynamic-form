@@ -1,0 +1,295 @@
+<ng-container [formGroup]="form">
+  <ng-container [ngSwitch]="input.type">
+    <!-- TextInput -->
+    <div *ngSwitchCase="'text'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          type="{{ input.type }}"
+          matInput
+          [formControlName]="input.name"
+          placeholder="{{ input.label }}"
+          [value]="input.value"
+        />
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- NumberInput -->
+    <div *ngSwitchCase="'number'" class="input" [ngClass]="input.classes">
+      <mat-form-field *ngSwitchCase="'number'" class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          type="{{ input.type }}"
+          matInput
+          [formControlName]="input.name"
+          placeholder="{{ input.label }}"
+          [value]="input.value"
+        />
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- EmailInput -->
+    <div *ngSwitchCase="'email'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          type="{{ input.type }}"
+          matInput
+          [formControlName]="input.name"
+          placeholder="{{ input.label }}"
+          [value]="input.value"
+        />
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- TelInput -->
+    <div *ngSwitchCase="'tel'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          type="{{ input.type }}"
+          matInput
+          [formControlName]="input.name"
+          placeholder="{{ input.label }}"
+          [value]="input.value"
+        />
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- DateInput -->
+    <div *ngSwitchCase="'date'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <input
+          type="{{ input.type }}"
+          matInput
+          [formControlName]="input.name"
+          placeholder="{{ input.label }}"
+          [value]="input.value"
+        />
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- SelectInput -->
+    <div *ngSwitchCase="'select'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <mat-select [formControlName]="input.name">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let valueItem of input.value" [value]="valueItem"
+            >{{ valueItem }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- PasswordInput -->
+    <ng-container *ngSwitchCase="'password'">
+      <ng-container
+        *ngIf="$any(input).confirmPassword"
+        formGroupName="passwords"
+      >
+        <div class="input" [ngClass]="input.classes">
+          <mat-form-field class="" appearance="outline">
+            <mat-label>{{ input.label }}</mat-label>
+            <input
+              type="{{ input.type }}"
+              matInput
+              [formControlName]="input.name"
+              placeholder="{{ input.label }}"
+            />
+            <mat-error
+              *ngIf="form.get('passwords.' + input.name)!.hasError('required')"
+            >
+              {{ input.label }} is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input" [ngClass]="input.classes">
+          <mat-form-field class="" appearance="outline">
+            <mat-label>{{ $any(input).confirmPasswordLabel }}</mat-label>
+            <input
+              type="{{ input.type }}"
+              matInput
+              [formControlName]="input.name + '_confirm'"
+              placeholder="{{ $any(input).confirmPasswordLabel }}"
+            />
+            <mat-error
+              *ngIf="
+                form
+                  .get('passwords.' + input.name + '_confirm')!
+                  .hasError('required')
+              "
+            >
+              {{ $any(input).confirmPasswordLabel }} is
+              <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                form
+                  .get('passwords.' + input.name + '_confirm')!
+                  .hasError('mustMatch')
+              "
+            >
+              {{ $any(input).confirmPasswordLabel }} does not match {{
+              input.label }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <div
+        *ngIf="!$any(input).confirmPassword"
+        class="input"
+        [ngClass]="input.classes"
+      >
+        <mat-form-field class="" appearance="outline">
+          <mat-label>{{ input.label }}</mat-label>
+          <input
+            type="{{ input.type }}"
+            matInput
+            [formControlName]="input.name"
+            placeholder="{{ input.label }}"
+          />
+          <mat-error *ngIf="form.controls[input.name].hasError('required')">
+            {{ input.label }} is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </ng-container>
+    <!-- FileInput -->
+    <div *ngSwitchCase="'file'" class="input" [ngClass]="input.classes">
+      <mat-form-field class="" appearance="outline">
+        <mat-label>{{ input.label }}</mat-label>
+        <ngx-mat-file-input
+          (change)="onFileChange($event)"
+          [formControlName]="input.name"
+        ></ngx-mat-file-input>
+        <!-- <mat-icon matSuffix>folder</mat-icon> -->
+        <mat-error *ngIf="form.controls[input.name].hasError('required')">
+          {{ input.label }} is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- SliderInput -->
+    <div *ngSwitchCase="'slider'" class="input" [ngClass]="input.classes">
+      <div
+        class="example-label-container"
+        [class]="true ? 'example-label-vertical' : 'example-label-horizontal'"
+      >
+        <label id="" class="example-name-label">{{ input.label }}</label>
+        <label class="example-value-label"
+          >{{ form.controls[input.name].value }}</label
+        >
+      </div>
+      <mat-slider
+        class=""
+        [formControlName]="input.name"
+        [disabled]="false"
+        [invert]="false"
+        [max]="100"
+        [min]="1"
+        [step]="1"
+        [thumbLabel]="true"
+        [tickInterval]="1"
+        [value]="0"
+        [vertical]="false"
+        aria-labelledby=""
+      >
+      </mat-slider>
+    </div>
+    <!-- CheckInput -->
+    <mat-checkbox
+      *ngSwitchCase="'check'"
+      [ngClass]="input.classes"
+      [formControlName]="input.name"
+      >{{ input.label }}</mat-checkbox
+    >
+
+    <!-- RadioInput -->
+    <div *ngSwitchCase="'radio'" class="input" [ngClass]="input.classes">
+      <label id="">{{ input.label }}:</label>
+      <mat-radio-group
+        aria-labelledby=""
+        class=""
+        [formControlName]="input.name"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let valueItem of input.values"
+          [value]="valueItem"
+        >
+          {{ valueItem }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <!-- ProgressBarInput -->
+    <div
+      *ngSwitchCase="'progressbar'"
+      class="input"
+      [ngClass]="input.classes"
+      style="margin-bottom: 10px"
+    >
+      <label id="">{{ input.label }}</label>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="$any(input.value)"
+      ></mat-progress-bar>
+    </div>
+    <!-- TableInput -->
+    <div *ngSwitchCase="'table'" class="input" [ngClass]="input.classes">
+      <table
+        mat-table
+        [dataSource]="$any(input.value)"
+        class="mat-elevation-z8"
+      >
+        <ng-container
+          [matColumnDef]="col"
+          *ngFor="let col of $any(input).columns"
+        >
+          <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+          <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="$any(input).columns">
+          >
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: $any(input).columns">
+          ;">
+        </tr>
+      </table>
+    </div>
+    <!-- TableInput -->
+    <div
+      *ngSwitchCase="'tree-checkbox'"
+      class="input"
+      [ngClass]="input.classes"
+    >
+      <tree-input
+        [form]="form"
+        [inputName]="input.name"
+        [data]="input.values"
+      ></tree-input>
+    </div>
+
+    <div *ngSwitchCase="'input-group'" class="input">
+      <group-input [form]="form" [input]="input"></group-input>
+    </div>
+    <div *ngSwitchCase="'button'" class="input">
+      <button [ngClass]="input.classes">{{ input.label }}</button>
+    </div>
+  </ng-container>
+</ng-container>

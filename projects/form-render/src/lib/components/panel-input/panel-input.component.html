@@ -1,0 +1,33 @@
+<ng-container [formGroup]="form">
+  <mat-expansion-panel
+    [ngClass]="input?.classes || ['expanded-panel']"
+    [expanded]="input.expanded"
+    [hideToggle]="input.hideToggle"
+    (afterExpand)="handleExpand()"
+    (afterCollapse)="handleCollapse()"
+  >
+    <mat-checkbox
+      (change)="handleChange($event)"
+      *ngIf="input.titleIsCheckbox"
+      [formControlName]="input.name"
+      (click)="checkClicks($event)"
+    >
+      {{ input.label }}
+    </mat-checkbox>
+    <mat-expansion-panel-header *ngIf="!input?.isLeaf">
+      <mat-panel-title>
+        <mat-checkbox
+          (change)="handleChange($event)"
+          *ngIf="input.titleIsCheckbox"
+          [formControlName]="input.name"
+          (click)="checkClicks($event)"
+        >
+          {{ input.label }}
+        </mat-checkbox>
+        <span *ngIf="!input.titleIsCheckbox">{{ input.label }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+      <!-- <input-render [input]="input" [form]="form"></input-render> -->
+      <ng-content></ng-content>
+  </mat-expansion-panel>
+</ng-container>

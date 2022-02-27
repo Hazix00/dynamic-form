@@ -1,0 +1,7 @@
+<p>{{ input.label }}</p>
+
+<div [ngClass]="input.classes">
+  <div *ngFor="let input of input.inputs" class="form-row"  >
+      <input-render [input]="input" [form]="form"></input-render>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<ng-container>
+    <div class="">
+        <label for="">{{ input.label }}</label>
+    </div>
+    <div class="" *ngFor="let checkInput of input.values">
+        <mat-checkbox
+            [name]="checkInput.name"
+            [(ngModel)]="checkInput.value"
+            (change)="setValue()"
+            >
+            {{checkInput.label }}
+        </mat-checkbox>
+    </div>
+</ng-container>
